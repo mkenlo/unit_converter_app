@@ -4,6 +4,7 @@
 
 import 'package:flutter/material.dart';
 import 'category.dart';
+import 'unit.dart';
 
 // Define any constants
 const Icon _iconDefault = Icon(Icons.cake);
@@ -49,6 +50,17 @@ class CategoryRoute extends StatelessWidget {
         });
   }
 
+  /// Returns a list of mock [Unit]s.
+  List<Unit> _retrieveUnitList(String categoryName) {
+    return List.generate(10, (int i) {
+      i += 1;
+      return Unit(
+        name: '$categoryName Unit $i',
+        conversion: i.toDouble(),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     // Create a list of the eight Categories, using the names and colors
@@ -57,10 +69,14 @@ class CategoryRoute extends StatelessWidget {
 
     List<Category> categoryList = new List();
     for (int i = 0; i < _categoryNames.length; i++) {
-      categoryList.add(Category(
-          categoryName: _categoryNames[i],
-          categoryColor: _baseColors[i],
-          categoryIcon: _iconDefault));
+      categoryList.add(
+        Category(
+            categoryName: _categoryNames[i],
+            categoryColor: _baseColors[i],
+            categoryIcon: _iconDefault,
+            units: _retrieveUnitList(_categoryNames[i])
+        ),
+      );
     }
 
     // Create a list view of the Categories
