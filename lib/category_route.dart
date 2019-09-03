@@ -5,9 +5,7 @@
 import 'package:flutter/material.dart';
 import 'category.dart';
 
-// TODO: Check if we need to import anything
-
-// TODO: Define any constants
+// Define any constants
 const Icon _iconDefault = Icon(Icons.cake);
 
 /// Category Route (screen).
@@ -42,9 +40,18 @@ class CategoryRoute extends StatelessWidget {
     Colors.red,
   ];
 
+  Widget _buildCategoryListWidget(List categories) {
+    return ListView.builder(
+        padding: const EdgeInsets.all(8.0),
+        itemCount: categories.length,
+        itemBuilder: (BuildContext context, int index) {
+          return categories[index];
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
-    // TODO: Create a list of the eight Categories, using the names and colors
+    // Create a list of the eight Categories, using the names and colors
     // from above. Use a placeholder icon, such as `Icons.cake` for each
     // Category. We'll add custom icons later.
 
@@ -55,17 +62,22 @@ class CategoryRoute extends StatelessWidget {
           categoryColor: _baseColors[i],
           categoryIcon: _iconDefault));
     }
-    print(categoryList);
-    // TODO: Create a list view of the Categories
+
+    // Create a list view of the Categories
     final listView = Container(
       child: Padding(
-          padding: EdgeInsets.all(8.0),
-          child: ListView(children: categoryList)),
+          padding: EdgeInsets.symmetric(horizontal: 8.0),
+          child: _buildCategoryListWidget(categoryList)),
     );
 
-    // TODO: Create an App Bar
-    final appBar =
-        AppBar(title: Text("Unit Converter", style: TextStyle(fontSize: 30.0)));
+    // Create an App Bar
+    final appBar = AppBar(
+        centerTitle: true,
+        elevation: 0.0,
+        title: Text(
+          "Unit Converter",
+          style: TextStyle(fontSize: 30.0, color: Colors.black),
+        ));
 
     return Scaffold(
       appBar: appBar,
