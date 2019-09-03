@@ -1,6 +1,6 @@
 # Unit Converter App
 
-This is my first Flutter application. It was build following the Udacity Course on flutter.
+This is my first Flutter application. It was built following the Udacity Course on flutter.
 
 ## Getting Started
 
