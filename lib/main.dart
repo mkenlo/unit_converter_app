@@ -10,8 +10,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Unit Converter',
-      theme: ThemeData(
-          primarySwatch: Colors.green, backgroundColor: Colors.greenAccent),
       // our home should now point to an instance of the CategoryRoute widget.
       home: CategoryRoute(),
     );
