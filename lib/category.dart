@@ -33,6 +33,9 @@ class Category extends StatelessWidget {
   /// Navigates to the [ConverterRoute].
   void _navigateToConverter(BuildContext context) {
     // DONE: Using the Navigator, navigate to the [ConverterRoute]
+    if (Navigator.canPop(context)) {
+      Navigator.pop(context);
+    }
 
     Navigator.push(context, MaterialPageRoute<void>(
       builder: (BuildContext context) {

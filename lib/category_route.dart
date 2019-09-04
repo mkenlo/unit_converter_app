@@ -17,11 +17,17 @@ const Icon _iconDefault = Icon(Icons.cake);
 /// While it is named CategoryRoute, a more apt name would be CategoryScreen,
 /// because it is responsible for the UI at the route's destination.
 ///
-// TODO: Make CategoryRoute a StatefulWidget
-class CategoryRoute extends StatelessWidget {
+// DONE: Make CategoryRoute a StatefulWidget
+class CategoryRoute extends StatefulWidget {
   const CategoryRoute();
 
-  // TODO: Create State object for the CategoryRoute
+  // DONE: Create State object for the CategoryRoute
+  @override
+  _CategoryRouteState createState() => _CategoryRouteState();
+}
+
+class _CategoryRouteState extends State<CategoryRoute> {
+  List<Category> categories = new List();
 
   static const _categoryNames = <String>[
     'Length',
@@ -66,28 +72,25 @@ class CategoryRoute extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
-    // Create a list of the eight Categories, using the names and colors
-    // from above. Use a placeholder icon, such as `Icons.cake` for each
-    // Category. We'll add custom icons later.
-
-    List<Category> categoryList = new List();
+  void initState() {
     for (int i = 0; i < _categoryNames.length; i++) {
-      categoryList.add(
+      categories.add(
         Category(
             categoryName: _categoryNames[i],
             categoryColor: _baseColors[i],
             categoryIcon: _iconDefault,
-            units: _retrieveUnitList(_categoryNames[i])
-        ),
+            units: _retrieveUnitList(_categoryNames[i])),
       );
     }
+  }
 
+  @override
+  Widget build(BuildContext context) {
     // Create a list view of the Categories
     final listView = Container(
       child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 8.0),
-          child: _buildCategoryListWidget(categoryList)),
+          child: _buildCategoryListWidget(categories)),
     );
 
     // Create an App Bar
